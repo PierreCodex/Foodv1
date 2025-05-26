@@ -1,0 +1,956 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;400&family=Fira+Sans+Condensed:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Fira Sans Condensed", sans-serif;
+}
+
+:root {
+  --primaryColor: #f43127;
+  --secondaryColor: #ffd9c8;
+  --thirdColor: #ffe8e1;
+  --forthColor: #fff1ed;
+  --cardColor: #ffefe9;
+  --LocColor: #f0e2df;
+  --bgColor: #ffeae0;
+  --smallSize: 13px;
+  --normalSize: 18px;
+  --mediumSize: 25px;
+  --largeSize: 35px;
+  --textColor: rgb(48, 48, 48);
+  --whiteColor: hsl(0, 0%, 100%);
+  --borderRadius: 10px;
+  --boxShadow: 0 2px 4px 4px #f8e0d4d7;
+  --greyColor: rgb(180, 180, 180);
+  --greenColor: rgb(56, 223, 56);
+  --yellowColor: rgb(255, 170, 0);
+}
+
+html {
+  scroll-behavior: smooth !important;
+}
+
+.span {
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--LocColor);
+  border-radius: var(--borderRadius);
+  border: 1px dashed transparent;
+}
+.span:hover {
+  border: 1px dashed var(--primaryColor);
+}
+
+.success {
+  display: block;
+  background: var(--greenColor);
+  color: var(--whiteColor);
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 3px;
+}
+
+.blank {
+  display: block;
+  background: var(--primaryColor);
+  color: var(--bgColor);
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 3px;
+}
+
+.btn {
+  background: var(--primaryColor);
+  color: var(--whiteColor);
+}
+.btn a {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--whiteColor);
+}
+.btn .icon {
+  font-size: 18px;
+}
+.btn:hover {
+  background: var(--secondaryColor);
+  transition: all 0.4s ease-in-out;
+  color: var(--primaryColor);
+}
+.btn:hover .icon {
+  transform: translateX(10px);
+  transition: all 0.4s ease-in-out;
+}
+.btn:hover a {
+  color: var(--primaryColor);
+}
+
+.logOutIcon {
+  width: 20%;
+}
+
+input, textarea {
+  padding: 0.4rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: var(--cardColor);
+  overflow: visible;
+  font-weight: 600;
+  color: var(--textColor);
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: var(--textColor);
+  opacity: 0.5;
+  font-weight: 400;
+  font-size: 13px;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: var(--textColor);
+  opacity: 0.5;
+  font-weight: 400;
+  font-size: 13px;
+}
+input::placeholder, textarea::placeholder {
+  color: var(--textColor);
+  opacity: 0.5;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.heading {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column; /* Apilar los elementos verticalmente */
+  align-items: flex-start; /* Alinea al inicio */
+  justify-content: flex-start; /* Alinea al inicio del contenedor */
+  background: var(--thirdColor);
+  border-radius: var(--borderRadius);
+  color: var(--primaryColor);
+  font-weight: 900;
+  width: 100%; /* Asegura que ocupe el ancho completo del contenedor */
+}
+.heading span {
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 1rem; /* Añadir espacio debajo del título */
+}
+
+.adminPage, .dbPage {
+  justify-content: center;
+  margin: auto;
+  gap: 1rem;
+  padding: 2rem;
+}
+.adminPage .sideMenu, .dbPage .sideMenu {
+  width: 20%;
+  border: 1px solid var(--whiteColor);
+  border-radius: 1rem;
+  box-shadow: var(--boxShadow);
+  padding: 2rem 0;
+}
+.adminPage .sideMenu .logoDiv, .dbPage .sideMenu .logoDiv {
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+}
+.adminPage .sideMenu .logoDiv img, .dbPage .sideMenu .logoDiv img {
+  width: 80px;
+}
+.adminPage .sideMenu .logoDiv h1, .dbPage .sideMenu .logoDiv h1 {
+  font-size: var(--mediumSize);
+  color: var(--textColor);
+}
+.adminPage .sideMenu .menuList .listTitle, .dbPage .sideMenu .menuList .listTitle {
+  color: var(--textColor);
+  font-weight: 600;
+  font-size: var(--normalSize);
+  padding: 1rem 2rem;
+  display: block;
+}
+.adminPage .sideMenu .menuList .menuLists, .dbPage .sideMenu .menuList .menuLists {
+  display: grid;
+}
+.adminPage .sideMenu .menuList .menuLists .listItem, .dbPage .sideMenu .menuList .menuLists .listItem {
+  padding: 0.8rem 2rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border-left: 3px solid transparent;
+}
+.adminPage .sideMenu .menuList .menuLists .listItem .menuLink, .dbPage .sideMenu .menuList .menuLists .listItem .menuLink {
+  gap: 1rem;
+  color: var(--textColor);
+  font-weight: 500;
+}
+.adminPage .sideMenu .menuList .menuLists .listItem .menuLink .icon, .dbPage .sideMenu .menuList .menuLists .listItem .menuLink .icon {
+  background: var(--cardColor);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: var(--boxShadow);
+  border: 1px solid var(--whiteColor);
+}
+.adminPage .sideMenu .menuList .menuLists .listItem .menuLink .LinkText, .dbPage .sideMenu .menuList .menuLists .listItem .menuLink .LinkText {
+  font-size: var(--smallSize);
+}
+.adminPage .sideMenu .menuList .menuLists .listItem:hover, .dbPage .sideMenu .menuList .menuLists .listItem:hover {
+  background: var(--secondaryColor);
+  border-left: 3px solid var(--primaryColor);
+}
+.adminPage .sideMenu .menuList .menuLists .listItem:hover .menuLink, .dbPage .sideMenu .menuList .menuLists .listItem:hover .menuLink {
+  color: var(--primaryColor);
+}
+.adminPage .sideMenu .menuList .menuLists .active, .dbPage .sideMenu .menuList .menuLists .active {
+  background: var(--secondaryColor);
+  border-left: 3px solid var(--primaryColor);
+}
+.adminPage .sideMenu .menuList .menuLists .active .menuLink, .dbPage .sideMenu .menuList .menuLists .active .menuLink {
+  color: var(--primaryColor);
+}
+.adminPage .mainBody, .dbPage .mainBody {
+  position: relative;
+  width: 70%;
+  background: var(--cardColor);
+  height: 90vh;
+  box-shadow: var(--boxShadow);
+  border: 2px solid var(--whiteColor);
+  border-radius: 1rem;
+  padding: 1rem;
+ 
+  overflow-y: auto;
+  
+  scroll-behavior: smooth;
+}
+.adminPage .mainBody img, .dbPage .mainBody img {
+  width: 50px;
+}
+.adminPage .mainBody .topSection, .dbPage .mainBody .topSection {
+  position: sticky; /* Cambiado de fixed a sticky */
+  top: 0; /* Se asegura de que se quede en la parte superior mientras haces scroll */
+  left: 0;
+  width: 100%;
+  background: var(--secondaryColor);
+  padding: 1rem;
+  z-index: 999; 
+  border-radius: var(--borderRadius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: para dar sombra al fixed element */
+}
+.adminPage .mainBody .topSection .title, .dbPage .mainBody .topSection .title {
+  font-size: var(--mediumSize);
+  font-weight: 400;
+  color: var(--textColor);
+}
+.adminPage .mainBody .topSection .adminDiv, .dbPage .mainBody .topSection .adminDiv {
+  gap: 1rem;
+}
+.adminPage .mainBody .topSection .adminDiv .notDiv, .dbPage .mainBody .topSection .adminDiv .notDiv {
+  position: relative;
+}
+.adminPage .mainBody .topSection .adminDiv .notDiv .icon, .dbPage .mainBody .topSection .adminDiv .notDiv .icon {
+  background: var(--cardColor);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: var(--boxShadow);
+  border: 1px solid var(--whiteColor);
+}
+.adminPage .mainBody .topSection .adminDiv .notDiv .count, .dbPage .mainBody .topSection .adminDiv .notDiv .count {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  padding: 2px;
+  background: var(--primaryColor);
+  border-radius: 50%;
+  color: var(--whiteColor);
+  right: 0px;
+  top: -3px;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+.adminPage .mainBody .topSection .adminDiv .imgDiv, .dbPage .mainBody .topSection .adminDiv .imgDiv {
+  gap: 0.5rem;
+  background: var(--cardColor);
+  padding: 0.3rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: var(--boxShadow);
+  border: 1px solid var(--whiteColor);
+}
+.adminPage .mainBody .topSection .adminDiv .imgDiv img, .dbPage .mainBody .topSection .adminDiv .imgDiv img {
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--whiteColor);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.adminPage .mainBody .topSection .adminDiv .imgDiv .name, .dbPage .mainBody .topSection .adminDiv .imgDiv .name {
+  color: var(--textColor);
+  font-weight: 700;
+  font-size: var(--smallSize);
+}
+.adminPage .mainBody .topSection .adminDiv .imgDiv .name small, .dbPage .mainBody .topSection .adminDiv .imgDiv .name small {
+  text-transform: capitalize;
+  font-size: 400 !important;
+  opacity: 0.5;
+}
+.adminPage .mainBody .topSection .adminDiv .logOutBtn, .dbPage .mainBody .topSection .adminDiv .logOutBtn {
+  border: 1px solid var(--primaryColor);
+}
+.adminPage .mainBody .topSection .adminDiv .logOutBtn:hover, .dbPage .mainBody .topSection .adminDiv .logOutBtn:hover {
+  border: 1px solid var(--primaryColor);
+}
+.adminPage .mainBody .mainBodyContentContainer, .dbPage .mainBody .mainBodyContentContainer {
+  padding: 6rem 0.5rem 2rem; /* Aumentar el padding-top para dar espacio debajo del topSection */
+  width: 97%;
+  position: absolute;
+  height: 95%;
+  bottom: -10;
+  overflow-y: auto;  margin-top: -70px;
+}
+.adminPage .mainBody .summarySection, .dbPage .mainBody .summarySection {
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;  /* Asegura que ocupe todo el ancho disponible */
+}
+.adminPage .mainBody .summarySection .summaryCard, .dbPage .mainBody .summarySection .summaryCard {
+  position: relative;
+  background: var(--cardColor);
+  padding: 1rem;
+  height: 140px;
+  border-radius: 10px;
+  box-shadow: var(--boxShadow);
+  border: 1px solid var(--whiteColor);
+  overflow: hidden;
+}
+.adminPage .mainBody .summarySection .summaryCard span, .dbPage .mainBody .summarySection .summaryCard span {
+  justify-content: space-between;
+  font-size: var(--normalSize);
+  font-weight: 500;
+  color: var(--textColor);
+  opacity: 0.8;
+  z-index: 100;
+}
+.adminPage .mainBody .summarySection .summaryCard span img, .dbPage .mainBody .summarySection .summaryCard span img {
+  width: 40px;
+}
+.adminPage .mainBody .summarySection .summaryCard span .cardTitle, .dbPage .mainBody .summarySection .summaryCard span .cardTitle {
+  font-size: var(--normalSize);
+  color: var(--primaryColor);
+  z-index: 100;
+}
+.adminPage .mainBody .summarySection .summaryCard .count, .dbPage .mainBody .summarySection .summaryCard .count {
+  color: var(--textColor);
+  font-size: var(--largeSize);
+  font-weight: 700;
+  padding-top: 1rem;
+  text-align: right;
+}
+.adminPage .mainBody .summarySection .summaryCard .overlayText, .dbPage .mainBody .summarySection .summaryCard .overlayText {
+  position: absolute;
+  font-size: 10rem;
+  top: -10%;
+  right: 0%;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.04;
+}
+.adminPage .mainBody .summarySection .incomeCard, .dbPage .mainBody .summarySection .incomeCard {
+  background: var(--secondaryColor);
+  color: var(--whiteColor);
+}
+.adminPage .mainBody .categoriesSection, .dbPage .mainBody .categoriesSection {
+  margin-top: 1rem;
+}
+.adminPage .mainBody .categoriesSection .secHeader, .dbPage .mainBody .categoriesSection .secHeader {
+  width: 100%;
+  justify-content: space-between;
+}
+.adminPage .mainBody .categoriesSection .optionMenu, .dbPage .mainBody .categoriesSection .optionMenu {
+  margin: 1rem 0;
+  justify-content: left;
+  gap: 1rem;
+}
+.adminPage .mainBody .categoriesSection .optionMenu .option, .dbPage .mainBody .categoriesSection .optionMenu .option {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  width: 100px;
+  padding: 8px;
+  background: var(--cardColor);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--boxShadow);
+  border: 1px dashed transparent;
+  cursor: pointer;
+}
+.adminPage .mainBody .categoriesSection .optionMenu .option img, .dbPage .mainBody .categoriesSection .optionMenu .option img {
+  width: 25px;
+  margin: auto;
+}
+.adminPage .mainBody .categoriesSection .optionMenu .option small, .dbPage .mainBody .categoriesSection .optionMenu .option small {
+  padding: 0.5rem 0;
+  font-size: var(--smallSize);
+  font-weight: 600;
+  color: var(--textColor);
+  opacity: 0.9;
+}
+.adminPage .mainBody .categoriesSection .optionMenu .option:hover, .dbPage .mainBody .categoriesSection .optionMenu .option:hover {
+  background: var(--secondaryColor);
+  border: 1px dashed var(--primaryColor);
+}
+.adminPage .mainBody .categoriesSection .optionMenu .option:hover small, .dbPage .mainBody .categoriesSection .optionMenu .option:hover small {
+  color: var(--primaryColor);
+}
+.adminPage .mainBody .categoriesSection .optionMenu .categoryActive, .dbPage .mainBody .categoriesSection .optionMenu .categoryActive {
+  background: var(--secondaryColor);
+  border: 1px dashed var(--primaryColor);
+}
+.adminPage .mainBody .categoriesSection .optionMenu .categoryActive small, .dbPage .mainBody .categoriesSection .optionMenu .categoryActive small {
+  color: var(--primaryColor);
+}
+.adminPage .mainBody .mostOrdered, .dbPage .mainBody .mostOrdered {
+  margin-top: 2rem;
+}
+.adminPage .mainBody .mostOrdered .popularItemsContainer, .dbPage .mainBody .mostOrdered .popularItemsContainer {
+  margin-top: 4.5rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.adminPage .mainBody .mostOrdered .popularItemsContainer .singleItem, .dbPage .mainBody .mostOrdered .popularItemsContainer .singleItem {
+  position: relative;
+  width: 220px;
+  text-align: center;
+  padding: 1rem;
+  border: 2px solid var(--secondaryColor);
+  border-radius: 1.5rem;
+  background: var(--thirdColor);
+}
+.adminPage .mainBody .mostOrdered .popularItemsContainer .singleItem:hover, .dbPage .mainBody .mostOrdered .popularItemsContainer .singleItem:hover {
+  background: var(--secondaryColor);
+}
+.adminPage .mainBody .mostOrdered .popularItemsContainer .singleItem .imgDiv, .dbPage .mainBody .mostOrdered .popularItemsContainer .singleItem .imgDiv {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  top: -35%;
+  right: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+.adminPage .mainBody .mostOrdered .popularItemsContainer .singleItem .imgDiv img, .dbPage .mainBody .mostOrdered .popularItemsContainer .singleItem .imgDiv img {
+  width: 100px;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.adminPage .mainBody .mostOrdered .popularItemsContainer .singleItem .itemInfo, .dbPage .mainBody .mostOrdered .popularItemsContainer .singleItem .itemInfo {
+  padding-top: 2.5rem;
+}
+.adminPage .mainBody .mostOrdered .popularItemsContainer .singleItem .itemInfo .itemName, .dbPage .mainBody .mostOrdered .popularItemsContainer .singleItem .itemInfo .itemName {
+  font-weight: 700;
+  color: var(--textColor);
+  display: block;
+  padding-bottom: 0.5rem;
+  font-size: var(--smallFont);
+}
+.adminPage .mainBody .mostOrdered .popularItemsContainer .singleItem .itemInfo .desc, .dbPage .mainBody .mostOrdered .popularItemsContainer .singleItem .itemInfo .desc {
+  font-size: var(--smallestFont);
+  color: var(--greyText);
+  max-width: 150px;
+  text-align: center;
+  margin: auto;
+}
+
+.orderDiv .table, .subscribers .table, .administrators .table {
+  width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+}
+.orderDiv .table tr, .subscribers .table tr, .administrators .table tr {
+  padding: 2rem 0;
+  text-align: center;
+}
+.orderDiv .table tr th, .orderDiv .table tr td, .subscribers .table tr th, .subscribers .table tr td, .administrators .table tr th, .administrators .table tr td {
+  padding: 10px;
+  text-align: center;
+  color: var(--textColor);
+}
+.orderDiv .table .tblHeader, .subscribers .table .tblHeader, .administrators .table .tblHeader {
+  background: var(--secondaryColor);
+  padding: 3rem;
+}
+.orderDiv .table .tblHeader th, .subscribers .table .tblHeader th, .administrators .table .tblHeader th {
+  color: var(--primaryColor);
+}
+.orderDiv .table th:first-child, .subscribers .table th:first-child, .administrators .table th:first-child {
+  border-top-left-radius: var(--borderRadius);
+  border-bottom-left-radius: 3rem;
+}
+.orderDiv .table th:last-child, .subscribers .table th:last-child, .administrators .table th:last-child {
+  border-top-right-radius: var(--borderRadius);
+  border-bottom-right-radius: 3rem;
+}
+.orderDiv .table td:first-child, .subscribers .table td:first-child, .administrators .table td:first-child {
+  border-top-left-radius: var(--borderRadius);
+  border-bottom-left-radius: var(--borderRadius);
+  font-weight: 700;
+}
+.orderDiv .table td:last-child, .subscribers .table td:last-child, .administrators .table td:last-child {
+  border-top-right-radius: var(--borderRadius);
+  border-bottom-right-radius: var(--borderRadius);
+}
+.orderDiv .table .tblRow, .subscribers .table .tblRow, .administrators .table .tblRow {
+  background: var(--thirdColor);
+  border-radius: 3rem;
+}
+.orderDiv .table .tblRow:hover, .subscribers .table .tblRow:hover, .administrators .table .tblRow:hover {
+  background: var(--LocColor);
+}
+.orderDiv .table .tblRow .icon, .subscribers .table .tblRow .icon, .administrators .table .tblRow .icon {
+  color: var(--greyText);
+  opacity: 0.7;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: var(--textColor);
+  color: var(--whiteColor);
+  padding: 0.5rem 0.6rem;
+}
+.orderDiv .table .tblRow:nth-child(odd), .subscribers .table .tblRow:nth-child(odd), .administrators .table .tblRow:nth-child(odd) {
+  background: var(--forthColor);
+}
+.orderDiv .table .tblRow:nth-child(odd):hover, .subscribers .table .tblRow:nth-child(odd):hover, .administrators .table .tblRow:nth-child(odd):hover {
+  background: var(--LocColor);
+}
+.orderDiv .table .orderRow td, .subscribers .table .orderRow td, .administrators .table .orderRow td {
+  padding: 1rem 0;
+}
+.orderDiv .table .canceled, .subscribers .table .canceled, .administrators .table .canceled {
+  text-transform: capitalize;
+  color: var(--primaryColor);
+  font-weight: 700;
+}
+.orderDiv .table .closed, .subscribers .table .closed, .administrators .table .closed {
+  text-transform: capitalize;
+  color: var(--yellowColor);
+  font-weight: 700;
+}
+.orderDiv .table .checkedIn, .orderDiv .table .delivered, .subscribers .table .checkedIn, .subscribers .table .delivered, .administrators .table .checkedIn, .administrators .table .delivered {
+  text-transform: capitalize;
+  color: var(--greenColor);
+  font-weight: 700;
+}
+.orderDiv .table .OTW, .subscribers .table .OTW, .administrators .table .OTW {
+  text-transform: capitalize;
+  color: var(--yellowColor);
+  font-weight: 700;
+}
+.orderDiv .table .action, .subscribers .table .action, .administrators .table .action {
+  text-align: center;
+}
+.orderDiv .table .action .icon, .subscribers .table .action .icon, .administrators .table .action .icon {
+  padding: 0.3rem 0.6rem;
+  background: var(--whiteColor);
+  border-radius: 10px;
+  color: var(--primaryColor);
+  border: 1px solid transparent;
+  border: 1px solid var(--cardColor);
+}
+.orderDiv .table .action .icon:hover, .subscribers .table .action .icon:hover, .administrators .table .action .icon:hover {
+  background: var(--secondaryColor);
+  border: 1px solid var(--cardColor);
+}
+
+.menuContainer .foodCategoryDiv, .menuContainer .drinksCategoryDiv, .menuContainer .cakesCategoryDiv, .menuContainer .dessertCategoryDiv, .menuContainer .fastFoodCategoryDiv {
+  width: 100%;
+}
+.menuContainer .foodCategoryDiv .subTitle, .menuContainer .drinksCategoryDiv .subTitle, .menuContainer .cakesCategoryDiv .subTitle, .menuContainer .dessertCategoryDiv .subTitle, .menuContainer .fastFoodCategoryDiv .subTitle {
+  display: block;
+  padding: 1rem;
+  width: 100%;
+  font-size: 25px;
+  background: var(--thirdColor);
+  border-radius: var(--borderRadius);
+  color: var(--primaryColor);
+  font-weight: 900;
+}
+.menuContainer .foodCategoryDiv .subTitle_btn, .menuContainer .drinksCategoryDiv .subTitle_btn, .menuContainer .cakesCategoryDiv .subTitle_btn, .menuContainer .dessertCategoryDiv .subTitle_btn, .menuContainer .fastFoodCategoryDiv .subTitle_btn {
+  justify-content: space-between;
+}
+.menuContainer .foodCategoryDiv .itemsContainer, .menuContainer .drinksCategoryDiv .itemsContainer, .menuContainer .cakesCategoryDiv .itemsContainer, .menuContainer .dessertCategoryDiv .itemsContainer, .menuContainer .fastFoodCategoryDiv .itemsContainer {
+  margin-top: 4rem;
+  justify-content: left;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  row-gap: 3.5rem;
+  flex-wrap: wrap;
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem {
+  position: relative;
+  width: 220px;
+  padding: 1rem;
+  border: 2px solid var(--secondaryColor);
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem:hover, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem:hover, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem:hover, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem:hover, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem:hover {
+  transition: all 0.3s ease;
+  box-shadow: var(--boxShadow);
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem .imgDiv, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem .imgDiv, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem .imgDiv, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem .imgDiv, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem .imgDiv {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  top: -20%;
+  right: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem .imgDiv img, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem .imgDiv img, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem .imgDiv img, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem .imgDiv img, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem .imgDiv img {
+  width: 100px;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem .itemInfo, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem .itemInfo, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem .itemInfo, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem .itemInfo, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem .itemInfo {
+  padding-top: 2.5rem;
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem .itemInfo .itemName, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem .itemInfo .itemName, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem .itemInfo .itemName, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem .itemInfo .itemName, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem .itemInfo .itemName {
+  font-weight: 700;
+  color: var(--textColor);
+  display: block;
+  padding-bottom: 0.5rem;
+  font-size: var(--smallFont);
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem .itemInfo .desc, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem .itemInfo .desc, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem .itemInfo .desc, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem .itemInfo .desc, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem .itemInfo .desc {
+  font-size: var(--smallestFont);
+  color: var(--greyText);
+  max-width: 150px;
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom {
+  padding: 1rem 0.5rem 0.2rem;
+  justify-content: space-between;
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .price, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .price, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .price, .menuContainer .dessertCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .price, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .price {
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--primaryColor);
+}
+.menuContainer .foodCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .icon, .menuContainer .drinksCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .icon, .menuContainer .cakesCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .icon, .menuContainer .dessertCategoryDiv .itemsContainers .singleItem .itemInfo .itemBottom .icon, .menuContainer .fastFoodCategoryDiv .itemsContainer .singleItem .itemInfo .itemBottom .icon {
+  color: var(--greyText);
+  opacity: 0.7;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: var(--primaryColor);
+  color: white;
+  padding: 0.5rem 0.6rem;
+}
+
+.settingsPage {
+  width: 100%;
+}
+.settingsPage .heading {
+  padding: 1rem;
+  justify-content: space-between;
+  background: var(--thirdColor);
+  border-radius: var(--borderRadius);
+  color: var(--primaryColor);
+  font-weight: 900;
+}
+.settingsPage .heading span {
+  font-size: 20px;
+}
+.settingsPage .informationContainer {
+  margin: 2rem 0;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.settingsPage .informationContainer .imgDiv {
+  flex: 1;
+  height: 250px;
+  width: 300px;
+  border-radius: var(--borderRadius);
+  border: 5px solid white;
+  box-shadow: var(--boxShadow);
+}
+.settingsPage .informationContainer .imgDiv img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: var(--borderRadius);
+}
+.settingsPage .informationContainer .detailsDiv {
+  width: 100%;
+  flex: 2;
+  gap: 1rem;
+}
+.settingsPage .informationContainer .detailsDiv span.flex {
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--LocColor);
+  border-radius: var(--borderRadius);
+  border: 1px dashed transparent;
+}
+.settingsPage .informationContainer .detailsDiv span.flex:hover {
+  border: 1px dashed var(--primaryColor);
+}
+.settingsPage .informationContainer .detailsDiv .id {
+  background: var(--secondaryColor) !important;
+  color: var(--primaryColor);
+  font-weight: 600;
+}
+.settingsPage .informationContainer form {
+  width: 100%;
+  gap: 4rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.settingsPage .informationContainer form select {
+  padding: 15px 25px;
+  border-radius: 3rem;
+  border: none;
+  background: none;
+}
+.settingsPage .informationContainer form select:focus {
+  outline: none;
+}
+.settingsPage .informationContainer form div {
+  flex: 1;
+}
+.settingsPage .informationContainer form .btn {
+  padding: 1rem;
+  font-size: 18px;
+}
+
+.reviews {
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.reviews .singleReview {
+  position: relative;
+  padding: 10px;
+  border-radius: var(--borderRadius);
+  background: var(--thirdColor);
+  overflow: hidden;
+  width: 310px;
+}
+.reviews .singleReview .name {
+  font-weight: 600;
+  color: var(--primaryColor);
+  font-size: var(--smallSize);
+}
+.reviews .singleReview .quoteIcon {
+  position: absolute;
+  color: var(--textColor);
+  font-size: calc(var(--largeSize) + 2rem);
+  top: 0;
+  right: 0;
+  opacity: 0.1;
+}
+.reviews .singleReview .dateDiv {
+  color: var(--textColor);
+  padding: 0.7rem 0 0;
+  justify-content: space-between;
+  opacity: 0.7;
+}
+.reviews .singleReview .dateDiv .stars .icon {
+  font-size: var(--smallSize);
+  color: var(--textColor);
+}
+.reviews .singleReview:hover {
+  background: var(--secondaryColor);
+}
+
+.orderDetails {
+  justify-content: space-between;
+  gap: 5rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+.orderDetails .cartDiv {
+  flex-basis: 60%;
+  margin-bottom: 1rem;
+}
+.orderDetails .cartDiv .singleCart {
+  padding-bottom: 1.5rem;
+  width: 100%;
+  justify-content: space-between;
+  color: var(--textColor);
+}
+.orderDetails .cartDiv .singleCart img {
+  width: 50px;
+}
+.orderDetails .cartDiv .singleCart .foodDetails {
+  flex: 1;
+  margin-left: 1rem;
+}
+.orderDetails .cartDiv .singleCart .foodDetails span {
+  justify-content: space-between;
+}
+.orderDetails .cartDiv .singleCart .foodDetails .name_closeIcon {
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+.orderDetails .cartDiv .singleCart:not(:last-child) {
+  border-bottom: 1px solid var(--secondaryColor);
+}
+.orderDetails .amountDiv {
+  flex-basis: 40%;
+  display: grid;
+  background: var(--thirdColor);
+  padding: 1rem;
+  border-radius: var(--borderRadius);
+}
+.orderDetails .amountDiv .cartList {
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.orderDetails .amountDiv img {
+  width: 30px;
+  margin-left: 0.5rem;
+}
+.orderDetails .amountDiv .updateOrderDiv {
+  margin-top: 1rem;
+  border-top: 1px solid var(--greyColor);
+}
+.orderDetails .amountDiv .updateOrderDiv input {
+  width: 200px;
+}
+.orderDetails .amountDiv .updateOrderTitle {
+  padding-top: 1rem;
+  color: var(--textColor);
+}
+.orderDetails .amountDiv .inputDiv {
+  justify-content: space-between;
+  padding: 0.2rem 0;
+}
+.orderDetails .amountDiv .inputDiv select {
+  background: var(--thirdColor);
+  outline: none;
+  border: none;
+  padding: 1rem;
+}
+.orderDetails .amountDiv .inputDiv input {
+  width: 150px;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  text-align: right;
+  border: 2px solid var(--secondaryColor);
+}
+.orderDetails .amountDiv .btn {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border: 1px solid var(--secondaryColor);
+  background: var(--primaryColor);
+  color: var(--whiteColor);
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: var(--normalSize);
+}
+.orderDetails .amountDiv .btn:hover {
+  background: var(--secondaryColor);
+  color: var(--primaryColor);
+  border: 1px solid var(--primaryColor);
+}
+
+.customerDetails {
+  padding: 1rem;
+  border-radius: var(--borderRadius);
+  margin-bottom: 2rem;
+  gap: 0.2rem;
+}
+.customerDetails .singleDetail {
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: var(--borderRadius);
+}
+.customerDetails .singleDetail .dTitle {
+  font-weight: 600;
+  color: --textColor;
+  font-size: 14px;
+}
+.customerDetails .singleDetail .detail {
+  text-align: right;
+  opacity: 0.7;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .adminPage, .dbPage {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .adminPage .sideMenu, .dbPage .sideMenu {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .adminPage .mainBody, .dbPage .mainBody {
+    width: 100%;
+  }
+
+  .adminPage .mainBody .summarySection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .adminPage .mainBody .categoriesSection .optionMenu {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .adminPage, .dbPage {
+    padding: 1rem;
+  }
+
+  .adminPage .sideMenu, .dbPage .sideMenu {
+    width: 100%;
+  }
+
+  .adminPage .mainBody .summarySection {
+    grid-template-columns: 1fr;
+  }
+
+  .menuContainer .foodCategoryDiv .itemsContainer .singleItem {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+.greeting {
+  margin-top: 20px; /* Ajusta el valor según el espacio que desees */
+  font-size: 18px;
+  color: var(--textColor);
+}
+.greeting p {
+ /* Ajusta el valor según el espacio que desees */
+  font-size: 15px;
+  margin-top: 5px;
+ 
+}
+
+/* Espaciado adicional para el siguiente contenedor */
+
