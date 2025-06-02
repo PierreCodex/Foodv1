@@ -9,6 +9,10 @@ ob_start();
         <p>Please be authentic!</p>
 
         <?php
+        if (isset($_SESSION['noAdmin'])) {
+            echo $_SESSION['noAdmin'];
+            unset($_SESSION['noAdmin']);
+        }
         if (isset($_SESSION['noUser'])) {
             echo $_SESSION['noUser'];
             unset($_SESSION['noUser']);
@@ -59,6 +63,8 @@ include('clientPartials/clientFooter.php');
 
 <?php
 
+session_start();
+
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $loginPassword = $_POST['password'];
@@ -71,22 +77,16 @@ if (isset($_POST['submit'])) {
     $res_admin = mysqli_stmt_get_result($stmt_admin);
     $row_admin = mysqli_fetch_assoc($res_admin);
 
-    if ($row_admin && password_verify($loginPassword, $row_admin['password'])) {
+    if ($row_admin && $loginPassword === $row_admin['password']) {
         // Login exitoso admin
         $_SESSION['loginMessage'] = '<span class="success">Welcome Admin ' . htmlspecialchars($row_admin['name']) . '!</span>';
         $_SESSION['email']   = $email;
         $_SESSION['user_id'] = $row_admin['id'];
+        $_SESSION['role'] = 'admin';  // Marca el rol admin
+        $_SESSION['name'] = $row_admin['name'];  // <-- Agregado para mostrar nombre
+        $_SESSION['username'] = $row_admin['username']; // <-- aquí lo agregas
 
-        // Migrar carrito de invitado al admin
-        $session_id = session_id();
-        $stmtM = mysqli_prepare($conn, "
-            UPDATE cart
-               SET user_id = ?
-             WHERE session_id = ?
-        ");
-        mysqli_stmt_bind_param($stmtM, "is", $_SESSION['user_id'], $session_id);
-        mysqli_stmt_execute($stmtM);
-
+     
         header('Location:' . SITEURL . 'admin/dashboard.php');
         exit();
     }

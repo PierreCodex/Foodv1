@@ -44,7 +44,7 @@ if (!empty($_SESSION['user_id'])) {
         }
         ?>
         <h3 class="title">
-          Dear <span style="text-transform: capitalize;"><?php echo $greeting; ?></span>, below is your cart details:
+          Estimada <span style="text-transform: capitalize;"><?php echo $greeting; ?></span>, estos son los detalles de tu carrito:
         </h3>
 
         <?php 
@@ -102,38 +102,38 @@ if (!empty($_SESSION['user_id'])) {
                   </a>
                 </span>
                 <span class="qty_price flex">
-                  <span>Quantity: <?php echo $qty; ?></span>
-                  <span>$<?php echo $totalCost; ?></span>
+                  <span>Cantidad: <?php echo $qty; ?></span>
+                  <span>S/.<?php echo $totalCost; ?></span>
                 </span>
               </div>
             </div>
             <?php
           }
         } else {
-          echo '<span class="blank">No item in the cart yet!</span>';
+          echo '<span class="blank">Todavía no hay ningún artículo en el carrito.</span>';
         }
         ?>
       </div>
 
       <div class="amountDiv">
         <h3 class="title flex">
-          Order Fees: <img src="./Assests/order.png" alt="Icon">
+          Detalle de  Compra: <img src="./Assests/order.png" alt="Icon">
         </h3>
         <span class="cartList flex">
           <span class="subTitle">Subtotal:</span>
-          <span class="cost">$<?php echo number_format($subTotal, 2); ?></span>
+          <span class="cost">S/.<?php echo number_format($subTotal, 2); ?></span>
         </span>
         <span class="cartList flex">
           <span class="subTitle">Total:</span>
-          <span class="gradCost">$<?php echo number_format($subTotal, 2); ?></span>
+          <span class="gradCost">S/.<?php echo number_format($subTotal, 2); ?></span>
         </span>
 
-        <a href="menu.php" class="btn shopping">Continue Shopping</a>
+        <a href="menu.php" class="btn shopping">Continuar comprando</a>
 
         <?php if ($subTotal > 0): ?>
           <?php if (!empty($_SESSION['user_id'])): ?>
             <!-- Usuario logueado → checkout -->
-            <a href="checkout.php" class="btn">Check Out</a>
+            <a href="checkout.php" class="btn">Ordenar</a>
           <?php else: ?>
             <?php 
               // Guardar ruta para volver tras login
@@ -144,7 +144,7 @@ if (!empty($_SESSION['user_id'])) {
             <a href="login.php" class="btn">Check Out</a>
           <?php endif; ?>
         <?php else: ?>
-          <script>alert("Your cart is empty")</script>
+          <script>alert("Su carrito está vacía")</script>
         <?php endif; ?>
       </div>
 

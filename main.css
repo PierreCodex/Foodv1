@@ -7,24 +7,25 @@
 }
 
 :root {
-  --primaryColor: #f43127;
-  --secondaryColor: #ffd9c8;
-  --thirdColor: #ffe8e1;
-  --forthColor: #fff1ed;
-  --cardColor: #ffefe9;
-  --LocColor: #f0e2df;
-  --bgColor: #ffeae0;
+  --primaryColor: #B3541E;        /* Terracota (olla de cerámica) - color cálido principal */
+  --secondaryColor: #D8A24C;      /* Amarillo dorado (líneas y detalles) - color secundario */
+  --thirdColor: #F5F1E6;          /* Fondo madera clara - para fondos claros */
+  --forthColor: #ffffff;           /* Blanco puro para elementos destacados */
+  --cardColor: #F5F1E6;           /* Fondo madera clara (usado en tarjetas) */
+  --LocColor: #EAE3D9;            /* Beige claro similar, para detalles o hover */
+  --bgColor: #F5F1E6;             /* Fondo general beige claro */
+  --textColor: #000000;           /* Negro intenso para textos */
+  --whiteColor: #ffffff;          /* Blanco */
+  --borderRadius: 10px;
+  --boxShadow: 0 2px 6px rgba(179, 84, 30, 0.3); /* sombra con tono terracota */
+  --greyColor: #7a7a7a;           /* gris neutro para detalles secundarios */
+  --greenColor: #4A7CA1;          /* Azul pescado - se puede usar para botones secundarios o iconos */
+  --yellowColor: #D8A24C;         /* Amarillo dorado - para alertas o destacados */
+  /* Tamaños y demás mantienen igual */
   --smallSize: 13px;
   --normalSize: 18px;
   --mediumSize: 25px;
   --largeSize: 35px;
-  --textColor: rgb(48, 48, 48);
-  --whiteColor: hsl(0, 0%, 100%);
-  --borderRadius: 10px;
-  --boxShadow: 0 2px 4px 4px #f8e0d4d7;
-  --greyColor: rgb(180, 180, 180);
-  --greenColor: rgb(56, 223, 56);
-  --yellowColor: rgb(255, 170, 0);
 }
 
 body {
@@ -1527,7 +1528,7 @@ p {
 }
 
 .cart {
-  padding-top: 6rem;
+  padding-top: 8rem;
 }
 .cart .title {
   color: var(--textColor);
@@ -2095,15 +2096,17 @@ p {
 }
 @media screen and (min-width: 1240px) {
   :root {
-    --primaryColor: #f43127;
-    --secondaryColor: #ffd9c8;
-    --cardColor: #ffefe9;
-    --LocColor: #f0e2df;
-    --bgColor: #ffeae0;
-    --smallSize: 18px;
-    --normalSize: 23px;
-    --mediumSize: 30px;
-    --largeSize: 35px;
+  --primaryColor: #B3541E;        /* Terracota (olla de cerámica) - reemplaza #f43127 */
+  --secondaryColor: #D8A24C;      /* Amarillo dorado - reemplaza #ffd9c8 */
+  --cardColor: #F5F1E6;           /* Fondo madera clara - reemplaza #ffefe9 */
+  --LocColor: #EAE3D9;            /* Beige claro para detalles - reemplaza #f0e2df */
+  --bgColor: #F5F1E6;             /* Fondo general madera clara - reemplaza #ffeae0 */
+
+  /* Tamaños que me diste, se mantienen */
+  --smallSize: 18px;
+  --normalSize: 23px;
+  --mediumSize: 30px;
+  --largeSize: 35px;
   }
   html {
     font-size: 100%;
@@ -2114,7 +2117,7 @@ p {
     margin: auto;
   }
   .section {
-    padding: 6rem 0 4rem;
+    padding: 8rem 0 4rem;
   }
   .header {
     padding: 1.5rem 15rem;
@@ -2311,7 +2314,7 @@ p {
 /* FORMULARIO DE REGISTRO */
 /* Modificando las clases solo para el formulario de registro */
 .registerPage {
-  padding-top: 6rem;
+  padding-top: 8rem;
   justify-content: center;
   position: relative; /* Necesario para que los hijos usen z-index */
 }

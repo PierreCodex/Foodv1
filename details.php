@@ -29,8 +29,8 @@ ob_start();
             ?>
 
             <div class="sectionIntro">
-                <h1 class="secTitle">Details Page</h1>
-                <p class="subTitle">All about this item.</p>
+                <h1 class="secTitle">Detalle del Plato</h1>
+                <p class="subTitle">Toda la información sobre este delicioso platillo.</p>
                 <img src="./Assests/titleDesign.png" alt="Design Image">
             </div>
 
@@ -47,8 +47,8 @@ ob_start();
                    <div class="itemInfo">
                     <h2 class="itemTitle"><?php echo htmlspecialchars($foodName)?></h2>
                     <div class="status flex">
-                       <span class="availability">In stock</span>
-                       <span class="delivery">Delivery In: 30 Min</span>
+                       <span class="availability">En stock</span>
+                       <span class="delivery">Entrega en: 30 Min</span>
                     </div>
                     <div class="composition">
                         <span class="flex"><small>Food Type:</small><small><?php echo htmlspecialchars($category)?></small></span>
@@ -63,13 +63,13 @@ ob_start();
                      ?>
 
                      <div class="actionBtn flex">
-                          <span class="price flex"><span>$<?php echo number_format($foodPrice,2)?></span></span>
+                          <span class="price flex"><span>S/.<?php echo number_format($foodPrice,2)?></span></span>
 
                           <form method="post" class="flex" style="gap: .5rem;">
                             <input type="number" name="qty" value="1" min="1">
                             <input type="hidden" name="foodID" value="<?php echo $id?>">
                             <button class="btn flex" name="submit">
-                              Add to cart <i class="uil uil-shopping-bag icon"></i>
+                              Añadir al carrito <i class="uil uil-shopping-bag icon"></i>
                             </button>
                           </form>
                      </div>
@@ -133,10 +133,10 @@ if (isset($_POST['submit'])) {
      <div class="messageConatainer flex">
         <span class="messageCard">
             <img src="./Assests/shopping-cart.png" class="checkIcon">
-            <small>Item Added to <strong>Cart</strong>, <br>
-            Continue shopping or check-out now!</small>
+            <small>Artículo añadido al<strong>Carrito</strong>, <br>
+            Siga comprando o realize la orden.</small>
         <br><br>
-        - Thank you! -
+        - Gracias! -
         </span>
      </div>';
 

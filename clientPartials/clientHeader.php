@@ -32,7 +32,7 @@ include('./config/config.php');
     <header class="header flex" id="header">
         <div class="logoDiv">
             <a href="index.php" class="logo">
-                FOODIE.
+                <img src="./Assests/logo/logoI.png" alt="FOODIE Logo" style="height: 60px; width: auto;" />
             </a>
         </div>
 
@@ -73,24 +73,24 @@ include('./config/config.php');
         <!-- HeaderIcons -->
         <!-- HeaderIcons -->
         <div class="headerIcons flex">
-        <?php
-// Calcular total de ítems en carrito: invitado (session_id) + usuario (user_id)
-$session_id = session_id();
-$user_id    = !empty($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+            <?php
+            // Calcular total de ítems en carrito: invitado (session_id) + usuario (user_id)
+            $session_id = session_id();
+            $user_id    = !empty($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
 
-$stmt = mysqli_prepare($conn, "
+            $stmt = mysqli_prepare($conn, "
     SELECT COALESCE(SUM(qty),0) AS totalItems
       FROM cart
      WHERE session_id = ?
         OR user_id = ?
 ");
-mysqli_stmt_bind_param($stmt, "si", $session_id, $user_id);
-mysqli_stmt_execute($stmt);
-$res = mysqli_stmt_get_result($stmt);
-$row = mysqli_fetch_assoc($res);
-$itemCount = $row['totalItems'];
+            mysqli_stmt_bind_param($stmt, "si", $session_id, $user_id);
+            mysqli_stmt_execute($stmt);
+            $res = mysqli_stmt_get_result($stmt);
+            $row = mysqli_fetch_assoc($res);
+            $itemCount = $row['totalItems'];
 
-?>
+            ?>
             <div class="notDiv">
                 <a href="cart.php"><i class="uil uil-shopping-bag icon"></i></a>
                 <span class="count"><?php echo $itemCount ?></span>
@@ -143,9 +143,9 @@ $itemCount = $row['totalItems'];
                 </div>
             </div>
         </div>
-     
 
-    
+
+
 
 
         <!-- Toggle-On navBar Icon -->

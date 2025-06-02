@@ -1,6 +1,6 @@
 <div class="sideMenu">
     <div class="logoDiv flex">
-        <img src="../Assests/floating (2).png" alt="Logo Image">
+        <img src="./Assests/logo/logo.png" alt="Logo Image" style="height: 70px; width: auto;">
  
     </div>
 

@@ -3,7 +3,12 @@ include('./config/config.php');
 include('./clienteDashboard/adminHeader.php');
 include('clientPartials/clientHeader.php');
 ob_start();
+
+
+
 ?>
+
+
 <section class="container section tableReservationPage">
     <div class="adminPage flex">
         <?php

@@ -14,7 +14,29 @@ if (empty($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
+
+
 if (isset($_POST['submit'])) {
+
+    // Validar que no tenga pedidos pendientes o en camino
+    $sql_check = "SELECT COUNT(*) AS countPending FROM orders WHERE user_id = '$user_id' AND order_status IN ('Pendiente', 'En camino')";
+    $res_check = mysqli_query($conn, $sql_check);
+    $row_check = mysqli_fetch_assoc($res_check);
+    if ($row_check['countPending'] > 0) {
+        $_SESSION['orderError'] = '
+      <div class="messageConatainerHome flex">
+        <span class="messageCard fail">
+          <small>Tienes un pedido pendiente o en camino. Por favor espera a que se complete antes de hacer uno nuevo.</small>
+        </span>
+      </div>
+    ';
+        header('Location: index.php');
+        exit();
+    }
+
+
+
+
     // Datos del formulario
     $fName       = $_POST['fName'];
     $LName       = $_POST['LName'];
@@ -27,7 +49,7 @@ if (isset($_POST['submit'])) {
     $payment     = $_POST['payment'];
     $subTotal    = $_POST['subTotal'];
     $orderStatus = 'Pendiente';
-    $updated_date= date('Y-m-d H:i:s');
+    $updated_date = date('Y-m-d H:i:s');
 
     // 1) Insertar la orden (sin cart_ID)
     $sql_order = "
@@ -66,6 +88,9 @@ if (isset($_POST['submit'])) {
             $price = floatval($food['price']);
             $subtotal = $qty * $price;
 
+
+
+
             // Insertar detalle en order_items
             $sql_item = "INSERT INTO order_items (order_id, food_id, quantity, price, subtotal)
                          VALUES ('$order_id', '$food_id', '$qty', '$price', '$subtotal')";
@@ -88,6 +113,7 @@ if (isset($_POST['submit'])) {
     exit();
 }
 ?>
+
 <!-- Check Out Page -->
 <section class="section container checkOut">
     <div class="secTitle">
@@ -95,24 +121,26 @@ if (isset($_POST['submit'])) {
             Checkout <img src="./Assests/trolley.png" alt="Icon">
         </h2>
     </div>
+
+
     <div class="secContent">
         <form method="POST">
             <div class="mainContent grid">
                 <div class="rightDiv grid">
                     <!-- Personal Information -->
                     <div class="personalInfo">
-                        <h3 class="title flex">Personal Information: <img src="./Assests/details.png" alt="Icon"></h3>
+                        <h3 class="title flex">Información personal: <img src="./Assests/details.png" alt="Icon"></h3>
                         <div class="inputDiv">
                             <div class="input">
-                                <label for="fName">First Name</label>
+                                <label for="fName">Nombres</label>
                                 <input type="text" name="fName" placeholder="Enter First Name" required>
                             </div>
                             <div class="input">
-                                <label for="LName">Last Name</label>
+                                <label for="LName">Apellidos</label>
                                 <input type="text" name="LName" placeholder="Enter Last Name" required>
                             </div>
                             <div class="input">
-                                <label for="phone">Phone</label>
+                                <label for="phone">Telefono</label>
                                 <input type="number" name="phone" placeholder="Enter Phone Number" required>
                             </div>
                             <div class="input">
@@ -123,44 +151,47 @@ if (isset($_POST['submit'])) {
                     </div>
                     <!-- Delivery Details -->
                     <div class="deliveryAddress">
-                        <h3 class="title flex">Delivery Details: <img src="./Assests/house.png" alt="Icon"></h3>
+                        <h3 class="title flex">Detalles de la entrega: <img src="./Assests/house.png" alt="Icon"></h3>
                         <div class="inputDiv">
                             <div class="input">
-                                <label for="town">Location</label>
+                                <label for="town">Ubicación</label>
                                 <select name="town" required>
-                                    <option value="London">London</option>
-                                    <option value="Liverpool">Liverpool</option>
-                                    <option value="Shefield">Shefield</option>
-                                    <option value="Leicester">Leicester</option>
+                                    <option value="" disabled selected>Seleccione un distrito</option>
+                                    <option value="sullana">Sullana</option>
+                                    <option value="bellavista">Bellavista</option>
+                                    <option value="miguel_checa">Miguel Checa</option>
+                                    <option value="querecotillo">Querecotillo</option>
+                                    <option value="salitral">Salitral</option>
+                                    <option value="pocora">Pocora</option>
                                 </select>
                             </div>
                             <div class="input">
-                                <label for="street">Street</label>
+                                <label for="street">Calle / Avenida</label>
                                 <input type="text" name="street" placeholder="Enter Your Street" required>
                             </div>
                             <div class="input">
-                                <label for="buildingNo">Building Number</label>
+                                <label for="buildingNo">Número de domicilio</label>
                                 <input type="text" name="buildingNo" placeholder="Enter Building Number" required>
                             </div>
                             <div class="input">
-                                <label for="message">Message (Optional)</label>
+                                <label for="message">Referencia (Opcional)</label>
                                 <textarea name="message" placeholder="Any Message"></textarea>
                             </div>
                         </div>
                     </div>
                     <!-- Payment Option -->
                     <div class="paymentOption">
-                        <h3 class="title flex">Payment: <img src="./Assests/debit-card.png" alt="Icon"></h3>
+                        <h3 class="title flex">Pago:  <img src="./Assests/debit-card.png" alt="Icon"></h3>
                         <div class="optionDiv">
                             <div class="input flex">
                                 <div class="radio">
-                                    <input type="radio" name="payment" id="cod" value="C.O.D" required>
+                                    <input type="radio" name="payment" id="cod" value="Pago ContraEntrega" required>
                                 </div>
                                 <label for="cod">Pago contra entrega: (Delivery: S/.5)</label>
                             </div>
                             <div class="input flex">
                                 <div class="radio">
-                                    <input type="radio" name="payment" id="mobile" value="Dining">
+                                    <input type="radio" name="payment" id="mobile" value="Recoger en Restaurante">
                                 </div>
                                 <label for="mobile">Recoger en Restaurante</label>
                             </div>
@@ -170,7 +201,7 @@ if (isset($_POST['submit'])) {
                 <div class="leftDiv grid">
                     <!-- Cart Overview -->
                     <div class="cartDiv grid">
-                        <h3 class="title flex">Your order: <img src="./Assests/cart.png" alt="Icon"></h3>
+                        <h3 class="title flex">Tu Pedido: <img src="./Assests/cart.png" alt="Icon"></h3>
                         <?php
                         if (isset($_SESSION['deletedCartItem'])) {
                             echo $_SESSION['deletedCartItem'];
@@ -185,13 +216,13 @@ if (isset($_POST['submit'])) {
                                 $cartID   = $eachRow['id'];
                                 $foodID   = $eachRow['food_id'];
                                 $qty      = $eachRow['qty'];
-                                $totalCost= $eachRow['total_cost'];
+                                $totalCost = $eachRow['total_cost'];
                                 $subTotal += $totalCost;
 
                                 $foodRes = mysqli_query($conn, "SELECT * FROM food WHERE id = $foodID");
                                 if ($foodRes && mysqli_num_rows($foodRes) > 0) {
                                     $food = mysqli_fetch_assoc($foodRes);
-                                    ?>
+                        ?>
                                     <div class="singleCart flex">
                                         <?php if ($food['image'] != ""): ?>
                                             <img src="<?= SITEURL ?>databaseImages/foodie<?= $food['image'] ?>" alt="Online Food Order">
@@ -206,12 +237,12 @@ if (isset($_POST['submit'])) {
                                                 </a>
                                             </span>
                                             <span class="qty_price flex">
-                                                <span>Quantity: <?= $qty ?></span>
-                                                <span>$<?= $totalCost ?></span>
+                                                <span>Cantidad: <?= $qty ?></span>
+                                                <span>S/.<?= $totalCost ?></span>
                                             </span>
                                         </div>
                                     </div>
-                                    <?php
+                        <?php
                                 }
                             }
                         }
@@ -219,20 +250,20 @@ if (isset($_POST['submit'])) {
                     </div>
                     <!-- Totales y envío del formulario -->
                     <div class="amountDiv">
-                        <h3 class="title flex">Order Fees: <img src="./Assests/order.png" alt="Icon"></h3>
+                        <h3 class="title flex">Detalle de Compra: <img src="./Assests/order.png" alt="Icon"></h3>
                         <span class="cartList flex">
                             <span class="subTitle">Subtotal:</span>
-                            <span class="cost">$<?= $subTotal ?></span>
+                            <span class="cost">S/.<?= $subTotal ?></span>
                         </span>
                         <span class="cartList flex">
                             <span class="subTitle">Total:</span>
                             <span class="gradCost">
                                 <input type="hidden" name="cartID" value="<?= $cartID ?>">
                                 <input type="hidden" name="subTotal" value="<?= $subTotal ?>">
-                                $<?= $subTotal ?>
+                                S/.<?= $subTotal ?>
                             </span>
                         </span>
-                        <button type="submit" name="submit" class="btn">Order Now</button>
+                        <button type="submit" name="submit" class="btn">Realizar Orden</button>
                     </div>
                 </div>
             </div>

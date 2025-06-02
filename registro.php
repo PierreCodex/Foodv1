@@ -20,30 +20,30 @@ ob_start(); // Inicia el buffer de salida
             <div class="input-container">
                 <div class="input">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombrre" required>
                 </div>
                 <div class="input">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+                    <input type="email" id="email" name="email" placeholder="Ingresa tu Email" required>
                 </div>
                 <div class="input">
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                    <input type="password" id="password" name="password" placeholder="Ingresa Password" required>
                 </div>
                 <div class="input">
                     <label for="confirm_password">Confirmar contraseña</label>
-                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Your Password" required>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmar Password" required>
                 </div>
                 <div class="input">
                     <label for="phone">Phone</label>
-                    <input type="text" id="phone" name="phone" placeholder="Enter Your Phone Number" required>
+                    <input type="text" id="phone" name="phone" placeholder="Ingresa tu numero" required>
                 </div>
               
             </div>
-            <button class="btn flex" name="submit">Register <i class="uil uil-signin icon"></i></button>
+            <button class="btn flex" name="submit">Registrar <i class="uil uil-signin icon"></i></button>
         </form>
 
-        <p class="text">¿Ya tiene una cuenta? <br> <a href="login.php">Login Here</a></p>
+        <p class="text">¿Ya tiene una cuenta? <br> <a href="login.php">Iniciar Sesion</a></p>
 
         <img src="./Assests/floating (2).png" alt="">
     </div>

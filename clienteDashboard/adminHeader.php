@@ -10,7 +10,7 @@
 
     <!-- Link to css -->
     <link rel="stylesheet" href="./main.css">
-    <link rel="stylesheet" href="./admin.css">
+    <link rel="stylesheet" href="./adminc.css">
 
     <!-- Link to swiper css -->
     <link rel="stylesheet" href="./swiper-bundle.min.css">

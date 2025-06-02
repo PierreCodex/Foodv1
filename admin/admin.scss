@@ -151,10 +151,17 @@ input, textarea{
                width: 80px;
             }
 
-            h1{
-                font-size: var(--mediumSize);
-                color: var(--textColor);
-            }
+  .logoDiv {
+    display: flex;
+    justify-content: center; /* centra horizontalmente */
+    align-items: center;     /* centra verticalmente si hay altura */
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+}
+
+.logoDiv img {
+    width: 80px;
+}
         }
 
         .menuList{
