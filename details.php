@@ -3,84 +3,105 @@ include('clientPartials/clientHeader.php');
 ob_start();
 ?>
 
-    <!-- Details Section -->
-    <section class="details container section">
-        <div class="secContent">
+<!-- Details Section -->
+<section class="details container section">
+    <div class="secContent">
 
-            <?php 
-                $foodMenuId = intval($_GET['id']);
-                $sql = "SELECT * FROM food WHERE id = ?";
-                $stmtF = mysqli_prepare($conn, $sql);
-                mysqli_stmt_bind_param($stmtF, "i", $foodMenuId);
-                mysqli_stmt_execute($stmtF);
-                $resF = mysqli_stmt_get_result($stmtF);
-                if ($resF && mysqli_num_rows($resF) === 1) {
-                    $row = mysqli_fetch_assoc($resF);
-                    $id = $row['id'];
-                    $img = $row['image'];
-                    $foodName = $row['food_name'];
-                    $foodDesc = $row['food_desc'];
-                    $foodPrice = $row['price'];
-                    $category = $row['category'];
-                } else {
-                    echo '<span class="blank">Something went wrong</span>';
-                    exit();
-                }
-            ?>
+        <?php 
+            $foodMenuId = intval($_GET['id']);
+            $sql = "SELECT * FROM food WHERE id = ?";
+            $stmtF = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmtF, "i", $foodMenuId);
+            mysqli_stmt_execute($stmtF);
+            $resF = mysqli_stmt_get_result($stmtF);
+            if ($resF && mysqli_num_rows($resF) === 1) {
+                $row = mysqli_fetch_assoc($resF);
+                $id = $row['id'];
+                $img = $row['image'];
+                $foodName = $row['food_name'];
+                $foodDesc = $row['food_desc'];
+                $foodPrice = $row['price'];
+                $category_id = $row['category_id']; // Obtener category_id
+                $status = $row['status']; // Obtener la cantidad de stock
+            } else {
+                echo '<span class="blank">Algo salió mal</span>';
+                exit();
+            }
 
-            <div class="sectionIntro">
-                <h1 class="secTitle">Detalle del Plato</h1>
-                <p class="subTitle">Toda la información sobre este delicioso platillo.</p>
-                <img src="./Assests/titleDesign.png" alt="Design Image">
-            </div>
+            // Obtener el nombre de la categoría usando el category_id
+            $category_sql = "SELECT category_name FROM categories WHERE id = ?";
+            $stmtCategory = mysqli_prepare($conn, $category_sql);
+            mysqli_stmt_bind_param($stmtCategory, "i", $category_id);
+            mysqli_stmt_execute($stmtCategory);
+            $resCategory = mysqli_stmt_get_result($stmtCategory);
+            if ($resCategory && mysqli_num_rows($resCategory) === 1) {
+                $category_row = mysqli_fetch_assoc($resCategory);
+                $category_name = $category_row['category_name'];
+            } else {
+                $category_name = 'Unknown Category';
+            }
 
-            <div class="mainContent grid">
-               <div class="imgDiv_InfoDiv grid">
-                    <?php if ($img !== ""): ?>
-                        <div class="imgDiv">
-                            <img src="<?php echo SITEURL;?>databaseImages/foodie<?php echo htmlspecialchars($img);?>">
-                        </div>
-                    <?php else: ?>
-                        <span class="fail" style="color:red; margin: 0px 10px;">No Image</span>
-                    <?php endif; ?>
+            // Determinar la disponibilidad
+            if ($status > 0) {
+                $availability = 'En stock';
+            } else {
+                $availability = 'Agotado';
+            }
+        ?>
 
-                   <div class="itemInfo">
+        <div class="sectionIntro">
+            <h1 class="secTitle">Detalle del Plato</h1>
+            <p class="subTitle">Toda la información sobre este delicioso platillo.</p>
+            <img src="./Assests/titleDesign.png" alt="Design Image">
+        </div>
+
+        <div class="mainContent grid">
+            <div class="imgDiv_InfoDiv grid">
+                <?php if ($img !== ""): ?>
+                    <div class="imgDiv">
+                        <img src="<?php echo SITEURL;?>databaseImages/foodie<?php echo htmlspecialchars($img);?>">
+                    </div>
+                <?php else: ?>
+                    <span class="fail" style="color:red; margin: 0px 10px;">No Image</span>
+                <?php endif; ?>
+
+                <div class="itemInfo">
                     <h2 class="itemTitle"><?php echo htmlspecialchars($foodName)?></h2>
                     <div class="status flex">
-                       <span class="availability">En stock</span>
-                       <span class="delivery">Entrega en: 30 Min</span>
+                        <span class="availability"><?php echo $availability; ?></span>
+                        <span class="delivery">Entrega en: 30 Min</span>
                     </div>
                     <div class="composition">
-                        <span class="flex"><small>Food Type:</small><small><?php echo htmlspecialchars($category)?></small></span>
+                        <span class="flex"><small>Tipo de Comida:</small><small><?php echo htmlspecialchars($category_name)?></small></span>
                         <span class="flex"><small>Temperature:</small><small>Warm &amp; Fresh</small></span>
                     </div>
 
-                     <?php 
+                    <?php 
                         if(isset($_SESSION['qtyZero'])){
                             echo $_SESSION['qtyZero'];
                             unset($_SESSION['qtyZero']);
                         }
-                     ?>
+                    ?>
 
-                     <div class="actionBtn flex">
-                          <span class="price flex"><span>S/.<?php echo number_format($foodPrice,2)?></span></span>
+                    <div class="actionBtn flex">
+                        <span class="price flex"><span>S/.<?php echo number_format($foodPrice,2)?></span></span>
 
-                          <form method="post" class="flex" style="gap: .5rem;">
+                        <form method="post" class="flex" style="gap: .5rem;">
                             <input type="number" name="qty" value="1" min="1">
                             <input type="hidden" name="foodID" value="<?php echo $id?>">
                             <button class="btn flex" name="submit">
-                              Añadir al carrito <i class="uil uil-shopping-bag icon"></i>
+                                Añadir al carrito <i class="uil uil-shopping-bag icon"></i>
                             </button>
-                          </form>
-                     </div>
-                   </div>
-               </div>
-
-               <!-- ... resto de detail.php ... -->
+                        </form>
+                    </div>
+                </div>
             </div>
+
+            <!-- ... resto de detail.php ... -->
         </div>
-    </section>
-    <!-- Details Section Ends -->
+    </div>
+</section>
+<!-- Details Section Ends -->
 
 <?php 
 include('clientPartials/clientFooter.php');
@@ -134,7 +155,7 @@ if (isset($_POST['submit'])) {
         <span class="messageCard">
             <img src="./Assests/shopping-cart.png" class="checkIcon">
             <small>Artículo añadido al<strong>Carrito</strong>, <br>
-            Siga comprando o realize la orden.</small>
+            Siga comprando o realice la orden.</small>
         <br><br>
         - Gracias! -
         </span>

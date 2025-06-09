@@ -233,7 +233,7 @@ input::placeholder, textarea::placeholder {
   width: 50px;
 }
 .adminPage .mainBody .topSection, .dbPage .mainBody .topSection {
-  width: 65%;
+  width: 100%;
   background: var(--secondaryColor);
   padding: 1rem;
   position: fixed;
@@ -241,6 +241,8 @@ input::placeholder, textarea::placeholder {
   margin-bottom: 2rem;
   z-index: 1000;
   border-radius: var(--borderRadius);
+   position: sticky; /* Cambiado de fixed a sticky */
+  top: 0; /* Se asegura de que se quede en la parte superior mientras haces scroll */
 }
 .adminPage .mainBody .topSection .title, .dbPage .mainBody .topSection .title {
   font-size: var(--mediumSize);
@@ -308,15 +310,16 @@ input::placeholder, textarea::placeholder {
   border: 1px solid var(--primaryColor);
 }
 .adminPage .mainBody .mainBodyContentContainer, .dbPage .mainBody .mainBodyContentContainer {
-  padding: 6rem 0.5rem 2rem;
+  padding: 6rem 0.5rem 2rem; /* Aumentar el padding-top para dar espacio debajo del topSection */
   width: 97%;
   position: absolute;
   height: 95%;
-  bottom: 0;
-  overflow-y: auto;
+  bottom: -10;
+  overflow-y: auto;  margin-top: -70px; 
 }
 .adminPage .mainBody .summarySection, .dbPage .mainBody .summarySection {
   grid-template-columns: repeat(4, 1fr);
+   width: 100%;  /* Asegura que ocupe todo el ancho disponible */
 }
 .adminPage .mainBody .summarySection .summaryCard, .dbPage .mainBody .summarySection .summaryCard {
   position: relative;

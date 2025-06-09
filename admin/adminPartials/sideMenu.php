@@ -30,12 +30,7 @@
                 </a>
             </li>
 
-            <li class="listItem">
-                <a href="table.php" class="menuLink flex">
-                    <i class="uil uil-lamp icon"></i>
-                    <span class="LinkText">Reservaciones</span>
-                </a>
-            </li>
+
 
             <li class="listItem">
                 <a href="adminMenu.php" class="menuLink flex">
@@ -43,7 +38,12 @@
                     <span class="LinkText">Menu </span>
                 </a>
             </li>
-
+            <li class="listItem">
+                <a href="adminCategory.php" class="menuLink flex">
+                    <i class="uil uil-lamp icon"></i>
+                    <span class="LinkText">Categorias</span>
+                </a>
+            </li>
             <li class="listItem">
                 <a href="review.php" class="menuLink flex">
                     <i class='bx bxs-message-alt-dots icon'></i>
