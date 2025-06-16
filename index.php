@@ -228,7 +228,10 @@ if (isset($_SESSION['orderError'])) {
             <div class="content swiper">
                 <div class="swiper-wrapper">
                     <?php
-                    $sql = "SELECT * FROM food order by RAND() LIMIT 0,6 ";
+                    $sql = "SELECT f.id, f.image, f.food_name, f.food_desc, f.price, c.category_name 
+                    FROM food f
+                    JOIN categories c ON f.category_id = c.id
+                    ORDER BY RAND() LIMIT 6";
                     $res = mysqli_query($conn, $sql);
                     if ($res == TRUE) {
                         $count = mysqli_num_rows($res);
@@ -239,7 +242,7 @@ if (isset($_SESSION['orderError'])) {
                                 $foodName = $row['food_name'];
                                 $foodDesc = $row['food_desc'];
                                 $foodPrice = $row['price'];
-                                $category = $row['category'];
+                                $categoryName = $row['category_name'];
 
                     ?>
 

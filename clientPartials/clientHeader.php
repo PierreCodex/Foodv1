@@ -1,5 +1,5 @@
 <?php
-
+ob_start(); // Inicia el almacenamiento en búfer de salida
 include('./config/config.php');
 
 ?>
@@ -23,6 +23,16 @@ include('./config/config.php');
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://kit.fontawesome.com/c93511b22d.js" crossorigin="anonymous"></script>
+    <!-- Agregar SweetAlert desde CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.27/dist/sweetalert2.min.js"></script>
+
+<!-- Agregar Mapbox CSS en el <head> -->
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet" />
+
+<!-- Agregar Mapbox JS en el <head> -->
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+
 
 </head>
 
@@ -48,7 +58,7 @@ include('./config/config.php');
                 </li>
 
                 <li class="navItem">
-                    <a href="menu.php" class="navLink">Reparto</a>
+                    <a href="delivery.php" class="navLink">Reparto</a>
                 </li>
 
                 <li class="navItem">

@@ -32,7 +32,7 @@ include('./adminPartials/adminHeader.php');
 
       <?php
       // Get the values from the database=========>
-      $sql = "SELECT * FROM orders WHERE order_status = 'delivered'";
+      $sql = "SELECT * FROM orders WHERE order_status = 'Entregado'";
       $res = mysqli_query($conn, $sql);
       $totalIncome = 0;
       if ($res == TRUE) {

@@ -41,9 +41,9 @@ ob_start();
             
             <div class="mainBodyContentContainer">
 
-                <?php
-                // Get the values from the database=========>
-                $sql = "SELECT * FROM orders";
+               <?php
+                // Obtener las órdenes y el costo total solo para el usuario logueado
+                $sql = "SELECT * FROM orders WHERE user_id = '$user_id'"; // Filtrar por user_id
                 $res = mysqli_query($conn, $sql);
                 if ($res == TRUE) {
                     $count = mysqli_num_rows($res);
@@ -51,8 +51,8 @@ ob_start();
                 ?>
 
                 <?php
-                // Get the values from the database=========>
-                $sql = "SELECT * FROM orders WHERE order_status = 'delivered'";
+                // Obtener las órdenes entregadas del usuario logueado
+                $sql = "SELECT * FROM orders WHERE user_id = '$user_id' AND order_status = 'Entregado'"; // Filtrar por user_id y estado 'Entregado'
                 $res = mysqli_query($conn, $sql);
                 $totalIncome = 0;
                 if ($res == TRUE) {
@@ -66,6 +66,7 @@ ob_start();
                     }
                 }
                 ?>
+
                 <?php
                 // Get the values from the database=========>
                 $sql = "SELECT * FROM tablereservations WHERE status = 'closed'";
@@ -96,7 +97,7 @@ ob_start();
                             </span>
                         </span>
                         <h1 class="count">
-                        <?php echo $revenue ?>
+                        <?php echo $count ?>
                         </h1>
 
                         <span class="overlayText"></span>
@@ -110,7 +111,7 @@ ob_start();
                             </span>
                         </span>
                         <h1 class="count">
-                        <?php echo $revenue ?>
+                        <?php echo $deliveredItems ?>
                         </h1>
 
                         <span class="overlayText"></span>
@@ -122,7 +123,7 @@ ob_start();
                         <span class="flex">
                             <img src="./Assests/rating.png" alt="">
                             <span class="cardTitle">
-                                Total Reseñas
+                                Compras Totales
                             </span>
                         </span>
                         <h1 class="count">

@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li class="listItem">
-                <a href="review.php" class="menuLink flex">
+                <a href="reviews.php" class="menuLink flex">
                     <i class='bx bxs-message-alt-dots icon'></i>
                     <span class="LinkText">Reviews</span>
                 </a>

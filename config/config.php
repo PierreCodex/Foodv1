@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
   session_start(); // Iniciar sesión solo si no se ha iniciado previamente
 }
 
-
+date_default_timezone_set('America/Lima'); // Zona horaria de Perú
 
   // Definición de constantes con validación previa
 if (!defined('SITEURL')) {

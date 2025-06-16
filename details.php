@@ -96,7 +96,77 @@ ob_start();
                     </div>
                 </div>
             </div>
+               <div class="itemReview_Desc grid">
+                
+                <div class="itemDescription">
+                    <h3 class="title">
+                      Description
+                    </h3>
+                    <p>
+                       <?php echo $foodDesc?>
+                    </p>
+                </div>
 
+                <div class="itemReview">
+                    <div class="title flex">
+                        <h3>Customer review</h3>
+                        <div class="stars flex">
+                        <i class='bx bxs-star icon'></i>
+                        <i class='bx bxs-star icon'></i>
+                        <i class='bx bxs-star icon'></i>
+                        <i class='bx bxs-star icon'></i>
+                        <i class='bx bxs-star-half icon' ></i>
+                        </div>
+                    </div>
+
+                    <div class="reviews">
+                        <div class="singleReview">
+                            <span class="name">Alexander</span>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, velit.</p>
+                            <i class='bx bxs-quote-alt-right quoteIcon' ></i>
+                            <span class="dateDiv flex">
+                              <span class="date">
+                                10/09/2022
+                              </span>
+
+                              <div class="stars flex">
+                                <i class='bx bxs-star icon'></i>
+                                <i class='bx bxs-star icon'></i>
+                                <i class='bx bxs-star icon'></i>
+                                <i class='bx bxs-star icon'></i>
+                                <i class='bx bxs-star-half icon' ></i>
+                             </div>
+
+                            </span>
+
+                        </div>
+                        <div class="singleReview">
+                            <span class="name">Charmainie</span>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, velit.</p>
+                            <i class='bx bxs-quote-alt-right quoteIcon' ></i>
+                            <span class="dateDiv flex">
+                              <span class="date">
+                                10/09/2022
+                              </span>
+
+                              <div class="stars flex">
+                                <i class='bx bxs-star icon'></i>
+                                <i class='bx bxs-star icon'></i>
+                                <i class='bx bxs-star icon'></i>
+                                <i class='bx bxs-star icon'></i>
+                                <i class='bx bxs-star-half icon' ></i>
+                             </div>
+
+                            </span>
+
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+               </div>
             <!-- ... resto de detail.php ... -->
         </div>
     </div>

@@ -2748,3 +2748,244 @@ p{
     background: var(--primaryColor);
     border-radius: 10px;
 }
+
+/* Estilo para la tarjeta de la orden */
+.orderCard {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Encabezado de la orden */
+.orderHeader h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Estilos para los detalles de la orden */
+.orderDetails {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.orderDetailItem {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.orderDetailItem strong {
+    color: #444;
+    font-size: 14px;
+}
+
+.orderDetailItem p {
+    color: #777;
+    margin: 5px 0;
+}
+
+.orderDetailItem span.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.orderDetailItem span.status.pendiente {
+    background-color: #f39c12;
+    color: white;
+}
+
+.orderDetailItem span.status.entregado {
+    background-color: #27ae60;
+    color: white;
+}
+
+.orderDetailItem span.status.cancelado {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Estilo del total */
+.total {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e67e22;
+}
+
+/* Estilo para la tabla de los items */
+.orderItemsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orderItemsTable th, .orderItemsTable td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.orderItemsTable th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.orderItemsTable td {
+    color: #555;
+}
+
+.orderItemsTable img {
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo general para el formulario de reseña */
+section.tableReservationPage {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Encabezado del formulario */
+section.tableReservationPage .mainBody h1 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo para el contenedor de mensajes (error o éxito) */
+.messageConatainerHome {
+    margin-bottom: 20px;
+}
+
+.messageCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.messageCard.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.messageCard.fail {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.messageCard small {
+    font-size: 14px;
+}
+
+/* Estilos para el formulario de reseña */
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Estilos para las estrellas (calificación) */
+.rating {
+    display: flex;
+    justify-content: space-between;
+    max-width: 220px;
+    margin: 20px auto;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.rating input[type="radio"]:checked ~ label {
+    color: #FFD700;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #FFD700;
+}
+
+/* Estilos para el comentario */
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: vertical;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Estilos para el botón de envío */
+button.btn-submit {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 220px;
+    margin: 20px auto;
+}
+
+button.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+button.btn-submit:focus {
+    outline: none;
+}
+
+/* Estilos para la disposición del formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+textarea,
+input[type="radio"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+

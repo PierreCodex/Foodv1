@@ -39,13 +39,17 @@ if ($res && mysqli_num_rows($res) > 0) {
                 'image' => $row['image'],
                 'quantity' => $row['quantity'],
                 'price' => $row['price'],
-                'subtotal' => $row['subtotal']
+                'subtotal' => $row['subtotal'],
+                'food_id' => $row['food_id']  // Asegúrate de que food_id esté aquí
             ];
         }
     }
 } else {
     $orders = null; // No hay órdenes
 }
+
+
+
 ?>
 <section class="container section tableReservationPage">
     <div class="adminPage flex">
@@ -68,33 +72,77 @@ if ($res && mysqli_num_rows($res) > 0) {
                 <?php if ($orders): ?>
                     <?php foreach ($orders as $order_id => $order): ?>
                         <div class="orderCard">
-                            <h3>Orden #<?= $order_id ?> - Fecha: <?= $order['updated_date'] ?></h3>
-                            <p>Direccion: <?= $order['street'] ?></p>
-                            <p>Estado: <?= $order['order_status'] ?></p>
-                            <p>Total: S/.<?= $order['total_cost'] ?></p>
+                            <div class="orderHeader">
+                                <h3>Orden #<?= $order_id ?> - Fecha: <?= $order['updated_date'] ?></h3>
+                            </div>
 
-                            <table>
+                            <div class="orderDetails">
+                                <div class="orderDetailItem">
+                                    <strong>Dirección:</strong>
+                                    <p><?= $order['street'] ?></p>
+                                </div>
+                                <div class="orderDetailItem">
+                                    <strong>Estado:</strong>
+                                    <span class="status <?= strtolower($order['order_status']) ?>"><?= $order['order_status'] ?></span>
+                                </div>
+                                <div class="orderDetailItem">
+                                    <strong>Total:</strong>
+                                    <p class="total">S/. <?= number_format($order['total_cost'], 2) ?></p>
+                                </div>
+                            </div>
+
+                            <!-- Mostrar los productos de la orden con un botón de reseña por producto -->
+                            <!-- Mostrar los productos de la orden con un botón de reseña por producto -->
+                            <table class="orderItemsTable">
                                 <thead>
                                     <tr>
                                         <th>Producto</th>
                                         <th>Cantidad</th>
                                         <th>Precio Unitario</th>
                                         <th>Subtotal</th>
+                                        <th>Reseña</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($order['items'] as $item): ?>
-                                    <tr>
-                                        <td>
-                                            <?php if ($item['image']): ?>
-                                                <img src="<?= SITEURL ?>databaseImages/foodie<?= $item['image'] ?>" alt="<?= htmlspecialchars($item['food_name']) ?>" width="50" />
-                                            <?php endif; ?>
-                                            <?= htmlspecialchars($item['food_name']) ?>
-                                        </td>
-                                        <td><?= $item['quantity'] ?></td>
-                                        <td>S/.<?= number_format($item['price'], 2) ?></td>
-                                        <td>S/.<?= number_format($item['subtotal'], 2) ?></td>
-                                    </tr>
+                                        <?php
+                                        // Verificar si el usuario ya dejó una reseña para este producto
+                                        $sql_check_review = "
+                                            SELECT * FROM reviews 
+                                            WHERE user_id = $user_id AND food_id = {$item['food_id']}
+                                        ";
+                                        $res_check_review = mysqli_query($conn, $sql_check_review);
+                                        $review_exists = mysqli_num_rows($res_check_review) > 0;
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <?php if ($item['image']): ?>
+                                                    <img src="<?= SITEURL ?>databaseImages/foodie<?= $item['image'] ?>" alt="<?= htmlspecialchars($item['food_name']) ?>" width="50" />
+                                                <?php endif; ?>
+                                                <?= htmlspecialchars($item['food_name']) ?>
+                                            </td>
+                                            <td><?= $item['quantity'] ?></td>
+                                            <td>S/. <?= number_format($item['price'], 2) ?></td>
+                                            <td>S/. <?= number_format($item['subtotal'], 2) ?></td>
+
+                                            <td class="action">
+                                                &nbsp;|&nbsp;
+                                                <?php if ($order['order_status'] == 'Entregado'): ?>
+                                                    <?php if (!$review_exists): ?>
+                                                        <!-- Solo mostrar ícono si no hay reseña -->
+                                                        <a href="reviews.php?food_id=<?= $item['food_id']; ?>" class="btn btn-small" title="Deja una Reseña">
+                                                            ⭐
+                                                        </a>
+                                                    <?php else: ?>
+                                                        <!-- Mostrar mensaje si ya dejó una reseña -->
+                                                        <span>Ya dejaste una reseña</span>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    <span>No disponible</span>
+                                                <?php endif; ?>
+                                            </td>
+
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
